@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 import CTA from '../components/ui/CTA';
 import { projects } from '../data';
 
-const categories = ['all', 'ai', 'automation', 'trading', 'data', 'infrastructure'];
+const categories = ['all', 'ai', 'automation', 'trading', 'data'];
 
 export default function ProjectsPage() {
   const [active, setActive] = useState('all');
