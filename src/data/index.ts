@@ -261,66 +261,7 @@ export const projects: Project[] = [
     },
     links: { github: 'https://github.com/karkis23/market-sentiment-api' },
   },
-  {
-    id: '11',
-    slug: 'mini-coding-agent',
-    name: 'Mini Coding Agent',
-    tagline: 'Minimal and readable coding agent harness',
-    description: 'A minimal and readable coding agent harness implementation in Python to explain the core components of coding agents. Forked and studied for agentic architecture.',
-    category: 'ai',
-    status: 'research',
-    color: '#ec4899',
-    icon: '👾',
-    tech: ['Python', 'AI Agents', 'LLMs'],
-    features: [
-      'Core components of coding agents',
-      'Readable agent harness implementation',
-    ],
-    metrics: {
-      'Language': 'Python',
-    },
-    links: { github: 'https://github.com/karkis23/mini-coding-agent' },
-  },
-  {
-    id: '12',
-    slug: 'newtryai',
-    name: 'New Try AI',
-    tagline: 'Testing AI models in production',
-    description: 'Testing deployment and serving of AI models using the Railway.app infrastructure.',
-    category: 'infrastructure',
-    status: 'research',
-    color: '#8b5cf6',
-    icon: '🧪',
-    tech: ['Python', 'Railway.app', 'Deployment'],
-    features: [
-      'Cloud deployment testing',
-      'AI model serving',
-    ],
-    metrics: {
-      'Platform': 'Railway.app',
-    },
-    links: { github: 'https://github.com/karkis23/newtryai' },
-  },
-  {
-    id: '13',
-    slug: 'trading-ai-model-old',
-    name: 'Trading AI Model (Legacy)',
-    tagline: 'Legacy AI model for trading bot',
-    description: 'An older iteration of the AI model for the trading bot, demonstrating the evolution of the Zenith trading system\'s intelligence.',
-    category: 'ai',
-    status: 'research',
-    color: '#64748b',
-    icon: '🤖',
-    tech: ['Python', 'Machine Learning'],
-    features: [
-      'Legacy trading signal generation',
-      'Historical model architecture',
-    ],
-    metrics: {
-      'Language': 'Python',
-    },
-    links: { github: 'https://github.com/karkis23/trading-ai-model' },
-  }
+
 ];
 
 export const articles: Article[] = [
