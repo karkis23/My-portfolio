@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border-subtle;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-sans;
+    background-color: #070b14;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #070b14;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-bg-secondary/80 backdrop-blur-md border border-border-subtle;
+  }
+
+  .glass-strong {
+    @apply bg-bg-secondary backdrop-blur-xl border border-border;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.25), 0 0 40px rgba(59, 130, 246, 0.1);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.25), 0 0 40px rgba(16, 185, 129, 0.1);
+  }
+
+  .glow-amber {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.25), 0 0 40px rgba(245, 158, 11, 0.1);
+  }
+
+  .tech-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono font-medium
+    bg-bg-tertiary border border-border-subtle text-text-secondary hover:border-accent-blue
+    hover:text-accent-blue transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:border-border hover:shadow-card-hover;
+  }
+
+  .section-label {
+    @apply text-xs font-mono font-semibold tracking-widest uppercase text-accent-blue/70;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-green bg-clip-text text-transparent;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .terminal-prompt::before {
+    content: '> ';
+    @apply text-accent-green;
+  }
+
+  .dot-online {
+    @apply w-2 h-2 rounded-full bg-accent-green;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .nav-link {
+    @apply relative text-text-secondary hover:text-text-primary transition-colors duration-200 text-sm font-medium;
+  }
+
+  .nav-link.active {
+    @apply text-accent-blue;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent-blue text-white
+    font-semibold text-sm transition-all duration-200 hover:bg-blue-500 hover:shadow-glow-blue
+    active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border
+    text-text-secondary font-semibold text-sm transition-all duration-200
+    hover:border-accent-blue hover:text-accent-blue active:scale-95;
+  }
+
+  .metric-card {
+    @apply p-4 rounded-xl bg-bg-secondary border border-border-subtle card-hover;
+  }
+}
+
+/* React Flow custom styles */
+.react-flow__background {
+  background-color: #0f172a !important;
+}
+
+.react-flow__node {
+  border-radius: 8px !important;
+}
+
+.react-flow__edge-path {
+  stroke: #3b82f6 !important;
+  stroke-width: 1.5 !important;
+}
+
+.react-flow__controls {
+  background: #0f172a !important;
+  border: 1px solid #1e293b !important;
+}
+
+.react-flow__controls-button {
+  background: #0f172a !important;
+  border-bottom: 1px solid #1e293b !important;
+  fill: #94a3b8 !important;
+}
+
+.react-flow__minimap {
+  background: #0f172a !important;
+}
+
+/* Animated gradient border */
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-border {
+  position: relative;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+  background-size: 300% 300%;
+  animation: gradientBorder 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
