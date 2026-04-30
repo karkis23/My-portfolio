@@ -4,7 +4,7 @@ import type { Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, Download, Github, Cpu, Zap, BarChart2, Database,
-  Activity, ExternalLink, User
+  Activity, ExternalLink
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import TerminalPanel from '../components/ui/TerminalPanel';
