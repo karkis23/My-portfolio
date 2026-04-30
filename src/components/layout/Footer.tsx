@@ -1,7 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Terminal, Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Terminal, Github, Linkedin, Mail, ArrowUpRight, Check } from 'lucide-react';
 
 export default function Footer() {
+  const [copiedItem, setCopiedItem] = useState<string | null>(null);
+
+  const handleCopy = (e: React.MouseEvent, label: string, value: string) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(value);
+    setCopiedItem(label);
+    setTimeout(() => setCopiedItem(null), 2000);
+  };
   return (
     <footer className="border-t border-border-subtle bg-bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -25,20 +34,29 @@ export default function Footer() {
               {[
                 { icon: Github, href: 'https://github.com/karkis23?tab=repositories', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/karki-senthil-kumar-444230180/', label: 'LinkedIn' },
-                { icon: Mail, href: 'mailto:karkisenthilkumar@gmail.com', label: 'Email' },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-9 h-9 rounded-lg border border-border-subtle flex items-center justify-center
-                    text-text-muted hover:text-accent-blue hover:border-accent-blue/50 transition-all"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
+                { icon: Mail, href: '#', label: 'Email', copyValue: 'karkisenthilkumar@gmail.com' },
+              ].map(({ icon: Icon, href, label, copyValue }) => {
+                const isCopied = copiedItem === label;
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    onClick={copyValue ? (e) => handleCopy(e, label, copyValue) : undefined}
+                    target={copyValue ? undefined : "_blank"}
+                    rel={copyValue ? undefined : "noopener noreferrer"}
+                    aria-label={label}
+                    className="relative w-9 h-9 rounded-lg border border-border-subtle flex items-center justify-center
+                      text-text-muted hover:text-accent-blue hover:border-accent-blue/50 transition-all group"
+                  >
+                    {isCopied ? <Check size={15} className="text-accent-green" /> : <Icon size={15} />}
+                    {copyValue && (
+                      <span className="absolute -top-8 bg-bg-tertiary text-text-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-border-subtle">
+                        {isCopied ? 'Copied!' : 'Copy Email'}
+                      </span>
+                    )}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

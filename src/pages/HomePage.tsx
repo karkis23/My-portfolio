@@ -14,6 +14,7 @@ import { SectionHeader, MetricsCard, TechStackBadge } from '../components/ui/UIC
 import SEO from '../components/SEO';
 import CTA from '../components/ui/CTA';
 import { projects, articles, techDomains } from '../data';
+import karkiEmoji from '../assets/karki_emoji.png';
 
 // Fake equity curve data
 const equityData = [
@@ -488,8 +489,8 @@ export default function HomePage() {
             className="mt-8 flex flex-col md:flex-row items-center gap-8 text-left"
           >
             <div className="w-32 h-32 md:w-48 md:h-48 shrink-0 rounded-full border-2 border-accent-blue/50 p-1 overflow-hidden">
-              <div className="w-full h-full bg-bg-tertiary rounded-full flex items-center justify-center">
-                <User size={64} className="text-accent-blue/50" />
+              <div className="w-full h-full bg-bg-tertiary rounded-full overflow-hidden flex items-center justify-center">
+                <img src={karkiEmoji} alt="Karki Emoji" className="w-full h-full object-cover" />
               </div>
             </div>
             <div>

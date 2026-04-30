@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Mail, Github, Linkedin, Phone, Send, MapPin, Clock, CheckCircle2 } from 'lucide-react';
+import { Mail, Github, Linkedin, Phone, Send, MapPin, Clock, CheckCircle2, Check, Copy } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const socialLinks = [
   { icon: Github, label: 'GitHub', url: 'https://github.com/karkis23?tab=repositories', handle: '@karkis23', color: '#a8b3cf' },
   { icon: Linkedin, label: 'LinkedIn', url: 'https://www.linkedin.com/in/karki-senthil-kumar-444230180/', handle: '/in/karki-senthil-kumar-444230180', color: '#0a66c2' },
-  { icon: Phone, label: 'Phone', url: 'tel:+917010251160', handle: '+91 7010251160', color: '#1d9bf0' },
-  { icon: Mail, label: 'Email', url: 'mailto:karkisenthilkumar@gmail.com', handle: 'karkisenthilkumar@gmail.com', color: '#10b981' },
+  { icon: Phone, label: 'Phone', url: '#', handle: '+91 7010251160', color: '#1d9bf0', copyValue: '+917010251160' },
+  { icon: Mail, label: 'Email', url: '#', handle: 'karkisenthilkumar@gmail.com', color: '#10b981', copyValue: 'karkisenthilkumar@gmail.com' },
 ];
 
 // Stagger Animation Variants
@@ -28,6 +28,14 @@ const staggerItem: Variants = {
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [copiedItem, setCopiedItem] = useState<string | null>(null);
+
+  const handleCopy = (e: React.MouseEvent, label: string, value: string) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(value);
+    setCopiedItem(label);
+    setTimeout(() => setCopiedItem(null), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -199,26 +207,45 @@ export default function ContactPage() {
             <motion.div variants={staggerItem} className="p-5 rounded-xl bg-bg-secondary border border-border-subtle">
               <h3 className="text-text-primary font-bold text-sm mb-4">Connect</h3>
               <div className="space-y-3">
-                {socialLinks.map(({ icon: Icon, label, url, handle, color }) => (
-                  <a
-                    key={label}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-lg border border-border-subtle hover:border-border transition-all group"
-                  >
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center"
-                      style={{ background: `${color}15`, border: `1px solid ${color}30` }}
+                {socialLinks.map(({ icon: Icon, label, url, handle, color, copyValue }) => {
+                  const isCopied = copiedItem === label;
+                  return (
+                    <a
+                      key={label}
+                      href={copyValue ? '#' : url}
+                      onClick={copyValue ? (e) => handleCopy(e, label, copyValue) : undefined}
+                      target={copyValue ? undefined : "_blank"}
+                      rel={copyValue ? undefined : "noopener noreferrer"}
+                      className="flex items-center justify-between p-3 rounded-lg border border-border-subtle hover:border-border transition-all group bg-bg-secondary hover:bg-bg-tertiary cursor-pointer"
                     >
-                      <Icon size={14} style={{ color }} />
-                    </div>
-                    <div>
-                      <div className="text-text-primary text-xs font-semibold">{label}</div>
-                      <div className="text-text-muted text-xs font-mono">{handle}</div>
-                    </div>
-                  </a>
-                ))}
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110"
+                          style={{ background: `${color}15`, border: `1px solid ${color}30` }}
+                        >
+                          <Icon size={14} style={{ color }} />
+                        </div>
+                        <div>
+                          <div className="text-text-primary text-xs font-semibold">{label}</div>
+                          <div className="text-text-muted text-xs font-mono">{handle}</div>
+                        </div>
+                      </div>
+                      {copyValue && (
+                        <div className="text-text-muted opacity-0 group-hover:opacity-100 transition-opacity">
+                          {isCopied ? (
+                            <div className="flex items-center gap-1 text-accent-green text-xs font-medium">
+                              <Check size={14} /> Copied
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-1 text-xs">
+                              <Copy size={14} /> Copy
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </a>
+                  );
+                })}
               </div>
             </motion.div>
 
