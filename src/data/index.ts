@@ -355,6 +355,33 @@ export const articles: Article[] = [
     tags: ['JavaScript', 'Automation', 'Parsing'],
     category: 'Automation',
   },
+  {
+    slug: 'photographer-portfolio-booking',
+    title: 'Building a Premium Photographer Portfolio',
+    excerpt: 'An architectural overview of a lean MVP featuring real-time content synchronization via Sanity.io CMS and a premium UI for the visual arts.',
+    date: '2026-04-29',
+    readTime: 6,
+    tags: ['React', 'Sanity.io CMS', 'TypeScript'],
+    category: 'Data',
+  },
+  {
+    slug: 'derma-glow-architecture',
+    title: 'Derma Glow: Architecting a Modern Skincare Platform',
+    excerpt: 'Technical review of a robust web application built with TypeScript, detailing component-driven design and strict typing methodologies.',
+    date: '2026-04-20',
+    readTime: 5,
+    tags: ['TypeScript', 'Web Architecture', 'Frontend'],
+    category: 'Data',
+  },
+  {
+    slug: 'market-sentiment-api',
+    title: 'Market Sentiment API: Quantifying Market Psychology',
+    excerpt: 'Overview of a low-latency Python microservice designed to ingest, analyze, and quantify market sentiment in real-time for automated trading.',
+    date: '2026-04-10',
+    readTime: 7,
+    tags: ['Python', 'API', 'NLP', 'Trading'],
+    category: 'AI/ML',
+  },
 ];
 
 export const techDomains: TechDomain[] = [
