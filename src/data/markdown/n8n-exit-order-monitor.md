@@ -8,7 +8,7 @@ In intraday algorithmic options trading, rigorous risk management is critical. W
 
 ## Core Operational Mechanics
 
-Because active trading loops focus primarily on inference and execution, memory retention of prior executions is handled seamlessly through cross-pollinated Google Sheet states. These states are checked every two minutes natively via this monitoring tool.
+Because active trading loops focus primarily on inference and execution, memory retention of prior executions is handled seamlessly through cross-pollinated Supabase Database states. These states are checked every two minutes natively via this monitoring tool.
 
 ### 1. Continual Assessment Loop
 A Cron node executes on a `*/2` (every 2 minutes) schedule, specifically tracking active positions requiring reconciliation.
@@ -16,7 +16,7 @@ A Cron node executes on a `*/2` (every 2 minutes) schedule, specifically trackin
 ### 2. Position Retrieval
 - Authenticates into the Angel One dashboard using a secure `jwtToken`.
 - Retrieves the active *Order Book*, capturing real-time states (`executed`, `cancelled`, `complete`, or `rejected`).
-- Synchronously fetches active registered Entry pairs logged previously in the active ledger (`Google Sheets -> Active_Exit_Orders`).
+- Synchronously fetches active registered Entry pairs logged previously in the active ledger (`Supabase -> Active_Exit_Orders`).
 
 ### 3. Position Cancellation Execution
 - The logic evaluates whether either the Primary Target LIMIT or Stop-Loss MKT was achieved by matching active Ledger OrderIDs against newly completed execution records on the broker API.

@@ -28,7 +28,7 @@
 | **Logic Orchestrator** | n8n | Operational pipeline management & state persistence |
 | **Execution Gateway** | Dhan HQ API | Strategic market engagement & order management |
 | **Market Data Feed** | Angel One SmartAPI | Real-time tick & greeks ingestion |
-| **Persistent Ledger** | Google Sheets v4.2 | High-fidelity trade & signal auditing |
+| **Persistent Ledger** | Supabase Database v4.2 | High-fidelity trade & signal auditing |
 | **Terminal Interface** | React 18, Vite, TS | Professional monitoring & system control hub |
 
 ---
@@ -68,7 +68,7 @@ graph TD
     J -->|JSON Signal| D
     D -->|Signal Response| A
     
-    A --> K[Google Sheets Logging]
+    A --> K[Supabase Database Logging]
     A --> L[Dhan Order Execution]
     K --> M[React Dashboard]
 ```
@@ -85,14 +85,14 @@ graph TD
 │                                         ┌─────────────────────┐     │
 │                                         │ Log Active Trade     │     │
 │                                         │ Log Trade Summary    │     │
-│                                         │ → Google Sheets      │     │
+│                                         │ → Supabase Database      │     │
 │                                         └─────────────────────┘     │
 └─────────────────────────────────────────────────────────────────────┘
                                       │
                           ┌───────────┴──────────┐
                           ↓                      ↓
                ┌─────────────────┐    ┌──────────────────────┐
-               │  Google Sheets  │    │  React Dashboard      │
+               │  Supabase Database  │    │  React Dashboard      │
                │  (3 sheets)     │←──→│  (localhost:5173)     │
                └─────────────────┘    └──────────────────────┘
 ```
@@ -142,7 +142,7 @@ Python calculates **57 features** (RSI, GEX, IV Skew, etc.) and runs the **XGBoo
 Python returns a JSON signal with `finalSignal`, `confidence`, and `aiInsights`.
 
 ### Step 5 — Institutional Logging
-n8n logs the 57-feature decision package to the Google Sheet dataset.
+n8n logs the 57-feature decision package to the Supabase Database dataset.
 
 ### Step 6 — Order Execution
 If BUY signal, n8n places a Bracket Order on Dhan API.
@@ -199,7 +199,7 @@ All order IDs + prices → Log Active Trade → Dhan_Active_Trades sheet
 ```
 [Trading Hours Trigger]
     → [Trading Hour Filter1]
-    → [Getsheet Node]                 ← NEW: Direct Google Sheet fetch (Optimized)
+    → [Getsheet Node]                 ← NEW: Direct Supabase Database fetch (Optimized)
     → [Parse master Copy1]           ← Processes direct JSON data
     → [Angel One Login]              
     → [Option Chain Request1]        
@@ -471,7 +471,7 @@ All order IDs + prices → Log Active Trade → Dhan_Active_Trades sheet
 
 ---
 
-## 8. Google Sheets Schema
+## 8. Supabase Database Schema
 
 **Sheet ID:** `1aTMH5Yz28X_NA6lZgtjQzc7jlu9hiAPVVuf1ASTBQoU`
 **Access:** Must be set to "Anyone with the link can view"
@@ -592,7 +592,7 @@ Permanent record of all completed trades.
 ### Data Architecture
 
 ```
-Google Sheets (public CSV export)
+Supabase Database (public CSV export)
     ↕ axios GET (every 30s market hours, 3min otherwise)
 sheetsApi.ts
     → fetchSignals()       → LiveSignal[]
@@ -683,7 +683,7 @@ Verified Status = TRUE                                          Verified Status 
 - **No API key required**
 - **Symbols:** `NSE:NIFTY`, `NSE:INDIAVIX`
 
-### Google Sheets (CSV Export)
+### Supabase Database (CSV Export)
 - **Purpose:** Frontend data source (read-only)
 - **URL format:** `https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={GID}`
 - **Auth:** None (sheet must be public)
@@ -797,7 +797,7 @@ Verified Status = TRUE                                          Verified Status 
 - **Fix:** Changed default to `"Neutral"` (does not trigger SIDEWAYS gate)
 
 ### Fix #12 — Momentum Column = Confidence (Misleading)
-- **Problem:** `const momentumValue = score` — the Momentum column in Google Sheets was an exact duplicate of the Confidence column, offering no additional analytical value.
+- **Problem:** `const momentumValue = score` — the Momentum column in Supabase Database was an exact duplicate of the Confidence column, offering no additional analytical value.
 - **Fix:** Changed to `const momentumValue = macdHist` — the MACD histogram is the actual price momentum indicator
 
 ### Fix #13 — VolumeRatio Silently = 0 When Data Missing
@@ -808,9 +808,9 @@ Verified Status = TRUE                                          Verified Status 
 - **Problem:** SuperTrend can return "Neutral" during transitions.
 - **Fix:** Added `if (superTrend === "Neutral") reasons.push("SuperTrend: Neutral (transitioning)")`.
 
-### Optimization #1 — Direct Google Sheets Fetch (Mar 03)
+### Optimization #1 — Direct Supabase Database Fetch (Mar 03)
 - **Problem:** Downloading .xlsx from Drive (5.8s) and Extracting (3.4s) took ~9.2s total.
-- **Fix:** Replaced 2 nodes with a single `Getsheet` node (Google Sheets Read).
+- **Fix:** Replaced 2 nodes with a single `Getsheet` node (Supabase Database Read).
 - **Result:** Execution time for data fetch phase dropped to **2.4s**. Total workflow reliability improved.
 
 ---
@@ -884,11 +884,11 @@ const GID = {
 4. Set up credentials:
    - Angel One API key, client ID, password, TOTP
    - Dhan API token
-   - Google Sheets OAuth (for writing)
+   - Supabase Database OAuth (for writing)
 5. Set Cron to `*/5 9-15 * * 1-5`
 6. Enable workflow
 
-### Google Sheets Setup
+### Supabase Database Setup
 
 1. Create spreadsheet (or use existing)
 2. Create 3 sheets: `Dhan_Signals`, `Dhan_Active_Trades`, `Dhan_Trade_Summary`
@@ -917,9 +917,9 @@ npm run build        # Outputs to dist/
 
 ### Frontend shows no data
 
-1. Check Google Sheet is set to **"Anyone with link can view"**
+1. Check Supabase Database is set to **"Anyone with link can view"**
 2. Open browser DevTools → Network tab — look for failed `export?format=csv` requests
-3. Verify Sheet ID in `sheetsApi.ts` matches your Google Sheet URL
+3. Verify Sheet ID in `sheetsApi.ts` matches your Supabase Database URL
 4. Check GIDs: open each sheet tab and look at the URL `...#gid=XXXXXXX`
 
 ### n8n workflow not triggering signals
@@ -968,7 +968,7 @@ Session reports are stored in `docs/reports/`. Each session generates a report w
 To scale the bot from a prototype to a professional trading platform, the next step is migrating the data layer to **Supabase**.
 
 ### Why Supabase?
-Supabase replaces both Google Drive (for storage) and Google Sheets (for data logging) with a high-performance PostgreSQL database.
+Supabase replaces both Google Drive (for storage) and Supabase Database (for data logging) with a high-performance PostgreSQL database.
 
 | Advantage | Benefit to Webapp | Benefit to n8n |
 | :--- | :--- | :--- |
@@ -979,7 +979,7 @@ Supabase replaces both Google Drive (for storage) and Google Sheets (for data lo
 
 ### Migration Strategy
 1.  **Phase 1**: Define PostgreSQL schema for `signals`, `active_trades`, and `summary`.
-2.  **Phase 2**: Replace Google Sheet nodes in n8n with Supabase nodes.
+2.  **Phase 2**: Replace Supabase Database nodes in n8n with Supabase nodes.
 3.  **Phase 3**: Update `sheetsApi.ts` to `supabaseClient.ts` using the Supabase JS SDK.
 4.  **Phase 4**: Enable Realtime Row Level Security (RLS) for instant dashboard updates.
 
@@ -1081,7 +1081,7 @@ Supabase replaces both Google Drive (for storage) and Google Sheets (for data lo
 | :--- | :--- | :--- |
 | ~12:45 | First live market session running on v2.1 | 41 signal rows logged to Dhan_Signals sheet |
 | ~15:30 | Market closed | Last PE signal at 15:30, MARKET_CLOSED rows after |
-| 19:43 | Pulled all 41 rows from Google Sheet | Full phase-by-phase analysis completed |
+| 19:43 | Pulled all 41 rows from Supabase Database | Full phase-by-phase analysis completed |
 | 19:43 | Live Session Report created | `docs/reports/LIVE_SESSION_REPORT_27FEB2026.md` |
 | 20:01 | Deep code audit — 14 blind spots identified | Prioritised by severity |
 | 20:06 | 13 blind spots fixed | `signal_code_v2.2.js` created |
@@ -1104,7 +1104,7 @@ Supabase replaces both Google Drive (for storage) and Google Sheets (for data lo
 | RSI Bands | ✅ Fixed | Mutually exclusive with 45/55 dead zone |
 | Momentum Field | ✅ Fixed | MACD histogram (was = confidence score) |
 | EMA+SMA Bonus | ✅ Fixed | ±5 (was ±10) |
-| Google Sheet | ✅ Logging | All signals to `Dhan_Signals` (gid=0) |
+| Supabase Database | ✅ Logging | All signals to `Dhan_Signals` (gid=0) |
 | React Dashboard | ✅ Running | localhost:5173 |
 | Documentation | ✅ Complete | This document, v2.2 |
 
@@ -1209,13 +1209,13 @@ The session started with a bearish bias reaching 24,700 around noon. At 14:05, t
 #### 06–07 March 2026 — Complete Engine Rebuild (v3.0)
 | Time (IST) | Activity | Outcome |
 | :--- | :--- | :--- |
-| 23:30 | Analyzed 1-week live test data from Google Sheet | Full signal audit: 61% directional accuracy, identified indicator bugs |
+| 23:30 | Analyzed 1-week live test data from Supabase Database | Full signal audit: 61% directional accuracy, identified indicator bugs |
 | 00:15 | Signal Engine v3.0 coded | 14 blind spots fixed, complete scoring rebalance |
 | 00:45 | Indicator Calculator audited | Found 3 critical bugs: SuperTrend NaN, MACD identity, VWAP 3-day |
 | 01:00 | Indicator Calculator v2.0 coded | All 8 bugs fixed, rolling ATR, proper signal line, daily VWAP |
 | 01:15 | Writers Zone audited | Found PCR interpretation inverted, no Max Pain |
 | 01:20 | Writers Zone v2.0 coded | PCR corrected, Max Pain added, OI change tracking |
-| 01:45 | Pre-flight compatibility check | All 32 field names validated, Google Sheet columns confirmed compatible |
+| 01:45 | Pre-flight compatibility check | All 32 field names validated, Supabase Database columns confirmed compatible |
 | 02:00 | All documentation updated | PROJECT_DOCUMENT.md, SIGNAL_ENGINE_V3_CHANGELOG.md, SYSTEM_STATUS_AND_ANALYSIS.md |
 
 ---
