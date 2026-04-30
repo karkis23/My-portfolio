@@ -23,7 +23,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               {[
-                { icon: Github, href: 'https://github.com/karkis23', label: 'GitHub' },
+                { icon: Github, href: 'https://github.com/karkis23?tab=repositories', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/karki-senthil-kumar-444230180/', label: 'LinkedIn' },
                 { icon: Mail, href: 'mailto:karkisenthilkumar@gmail.com', label: 'Email' },
               ].map(({ icon: Icon, href, label }) => (

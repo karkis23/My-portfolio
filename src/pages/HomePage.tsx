@@ -186,30 +186,12 @@ export default function HomePage() {
               <a href="/resume.pdf" download="Karki_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 <Download size={16} /> Resume
               </a>
-              <a href="https://github.com" className="btn-secondary">
+              <a href="https://github.com/karkis23?tab=repositories" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 <Github size={16} /> GitHub
               </a>
             </motion.div>
 
-            {/* Quick stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="grid grid-cols-3 gap-4"
-            >
-              {[
-                { label: 'Projects', value: '4+', icon: '🚀' },
-                { label: 'AI Accuracy', value: '74%', icon: '🧠' },
-                { label: 'Automation Execs', value: '1.2K/day', icon: '⚙️' },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center p-3 rounded-xl border border-border-subtle bg-bg-secondary/50">
-                  <div className="text-xl mb-1">{stat.icon}</div>
-                  <div className="text-text-primary font-bold text-xl font-mono">{stat.value}</div>
-                  <div className="text-text-muted text-xs">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
+
           </motion.div>
 
           {/* Right: Terminal */}
