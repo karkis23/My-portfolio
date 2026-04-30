@@ -37,4 +37,4 @@ The workflow is synchronized to run exactly every 5 minutes, aligning with stand
 - Extracts live Fill Price execution data.
 - Programmatically calculates precise Stop-Loss (SL) and Target limit values, enforcing predefined risk-to-reward minimums.
 - Deploys immediate SL-M and Target Limit orders to the broker's Order Book.
-- Final telemetry is logged into a structured Google Sheet (`Active_Exit_Orders` / `Signals` / `Trades`), serving as the system's ledger to accurately track the P&L curve over time.
+- Final telemetry is logged into a structured Supabase Database (`Active_Exit_Orders` / `Signals` / `Trades`), serving as the system's ledger to accurately track the P&L curve over time.

@@ -43,7 +43,7 @@ Upon receiving a valid execution signal (with sufficient confidence thresholds) 
 | Data Processing | Pandas + NumPy |
 | Dashboard UI | React + Vite + TypeScript |
 | Market Data | Angel One SmartAPI / Dhan API |
-| Telemetry Storage | PostgreSQL / Google Sheets |
+| Telemetry Storage | Supabase (PostgreSQL) |
 
 ---
 
