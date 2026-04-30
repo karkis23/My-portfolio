@@ -5,7 +5,7 @@ import { Mail, Github, Linkedin, Phone, Send, MapPin, Clock, CheckCircle2 } from
 import SEO from '../components/SEO';
 
 const socialLinks = [
-  { icon: Github, label: 'GitHub', url: 'https://github.com/karkis23', handle: '@karkis23', color: '#a8b3cf' },
+  { icon: Github, label: 'GitHub', url: 'https://github.com/karkis23?tab=repositories', handle: '@karkis23', color: '#a8b3cf' },
   { icon: Linkedin, label: 'LinkedIn', url: 'https://www.linkedin.com/in/karki-senthil-kumar-444230180/', handle: '/in/karki-senthil-kumar-444230180', color: '#0a66c2' },
   { icon: Phone, label: 'Phone', url: 'tel:+917010251160', handle: '+91 7010251160', color: '#1d9bf0' },
   { icon: Mail, label: 'Email', url: 'mailto:karkisenthilkumar@gmail.com', handle: 'karkisenthilkumar@gmail.com', color: '#10b981' },
