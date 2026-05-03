@@ -32,7 +32,7 @@ export const projects: Project[] = [
       { id: 're', label: 'Fallback Rule Engine', description: '25-step hardcoded logic port', type: 'process', position: { x: 250, y: 410 }, connections: ['ex'] },
       { id: 'ex', label: 'FastAPI /predict', description: 'JSON response to operational matrix', type: 'output', position: { x: 250, y: 530 }, connections: [] },
     ],
-    links: { github: 'https://github.com/karkis23/newsignalengine', docs: '/docs/guides/PYTHON_AI_MODEL_ARCHITECTURE.md' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#zenith-intelligence-engine', docs: '/docs/guides/PYTHON_AI_MODEL_ARCHITECTURE.md' },
   },
   {
     id: '2',
@@ -57,7 +57,7 @@ export const projects: Project[] = [
       'Design System Size': '19KB',
       'Latency': '<100ms UI Render',
     },
-    links: { github: 'https://github.com/karkis23/complete-project-N8n', docs: '/docs/PROJECT_DOCUMENT.md' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#zenith-trading-terminal', docs: '/docs/PROJECT_DOCUMENT.md' },
   },
   {
     id: '3',
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       'Log Write Latency': '<200ms',
       'Workflows': '2',
     },
-    links: { github: 'https://github.com/karkis23/complete-project-N8n/tree/main/n8n/workflows', docs: '/docs/AGENT_DOCUMENT.md' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#zenith-operational-matrix', docs: '/docs/AGENT_DOCUMENT.md' },
   },
   {
     id: '4',
@@ -117,7 +117,7 @@ export const projects: Project[] = [
       { id: 'exit_orders', label: 'Stop Loss Target Order', description: 'Fire SL-M & Limit Target', type: 'output', position: { x: 250, y: 770 }, connections: ['log2'] },
       { id: 'log2', label: 'Supabase Database', description: 'Trade Summary Logging', type: 'database', position: { x: 250, y: 890 }, connections: [] },
     ],
-    links: { github: 'https://github.com/karkis23/complete-project-N8n/blob/main/n8n/workflows/NEWN8NFINAL.JSON' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#n8n-intraday-options-bot' },
   },
   {
     id: '5',
@@ -147,7 +147,7 @@ export const projects: Project[] = [
       { id: 'cancel', label: 'Order Cancellation', description: 'Push cancel API to broker', type: 'output', position: { x: 250, y: 290 }, connections: ['closure'] },
       { id: 'closure', label: 'State Update', description: 'Log P&L and Close Sheet Active Row', type: 'database', position: { x: 250, y: 410 }, connections: [] },
     ],
-    links: { github: 'https://github.com/karkis23/complete-project-N8n/blob/main/n8n/workflows/exit_order_monitor.json' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#n8n-exit-order-monitor' },
   },
   {
     id: '6',
@@ -172,7 +172,7 @@ export const projects: Project[] = [
       'Region': 'India',
       'Database': 'PostgreSQL',
     },
-    links: { github: 'https://github.com/karkis23/Silent-money', demo: 'https://silent-money.vercel.app/' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#silent-money', demo: 'https://silent-money.vercel.app/' },
   },
   {
     id: '7',
@@ -196,7 +196,7 @@ export const projects: Project[] = [
       'Platform': 'Browser-based',
       'Parsing Speed': '<100ms',
     },
-    links: { github: 'https://github.com/karkis23/Epp-convertor' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#epp-task-converter' },
   },
   {
     id: '8',
@@ -219,7 +219,7 @@ export const projects: Project[] = [
       'Integration': 'Sanity.io CMS',
       'Language': 'TypeScript',
     },
-    links: { github: 'https://github.com/karkis23/Photographer-Portfolio-Booking-Web-App' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#photographer-portfolio' },
   },
   {
     id: '9',
@@ -239,7 +239,7 @@ export const projects: Project[] = [
     metrics: {
       'Language': 'TypeScript',
     },
-    links: { github: 'https://github.com/karkis23/Derma-Glow' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#derma-glow' },
   },
   {
     id: '10',
@@ -259,7 +259,7 @@ export const projects: Project[] = [
     metrics: {
       'Language': 'Python',
     },
-    links: { github: 'https://github.com/karkis23/market-sentiment-api' },
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#market-sentiment-api' },
   },
 
 ];

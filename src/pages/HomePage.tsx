@@ -187,7 +187,7 @@ export default function HomePage() {
               <a href="/resume.pdf" download="Karki_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 <Download size={16} /> Resume
               </a>
-              <a href="https://github.com/karkis23?tab=repositories" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+              <a href="https://github.com/karkis23/portfolio-showcase" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                 <Github size={16} /> GitHub
               </a>
             </motion.div>

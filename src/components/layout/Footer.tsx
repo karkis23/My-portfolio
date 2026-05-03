@@ -32,7 +32,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               {[
-                { icon: Github, href: 'https://github.com/karkis23?tab=repositories', label: 'GitHub' },
+                { icon: Github, href: 'https://github.com/karkis23/portfolio-showcase', label: 'GitHub' },
                 { icon: Linkedin, href: 'https://www.linkedin.com/in/karki-senthil-kumar-444230180/', label: 'LinkedIn' },
                 { icon: Mail, href: '#', label: 'Email', copyValue: 'karkisenthilkumar@gmail.com' },
               ].map(({ icon: Icon, href, label, copyValue }) => {
