@@ -413,6 +413,15 @@ export const articles: Article[] = [
     tags: ['Python', 'API', 'NLP', 'Trading'],
     category: 'AI/ML',
   },
+  {
+    slug: 'neuro-san-provider-enrollment-agent',
+    title: 'Neuro SAN Provider Enrollment Agent: Multi-Agent Automation',
+    excerpt: 'Detailed architectural overview of a multi-agent system built on the Neuro SAN platform to automate insurance provider enrollment verification on CGS and Novitas portals.',
+    date: '2026-07-08',
+    readTime: 6,
+    tags: ['Neuro SAN', 'Python', 'Healthcare', 'Automation'],
+    category: 'AI/ML',
+  },
 ];
 
 export const techDomains: TechDomain[] = [
