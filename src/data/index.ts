@@ -261,7 +261,38 @@ export const projects: Project[] = [
     },
     links: { github: 'https://github.com/karkis23/portfolio-showcase#market-sentiment-api' },
   },
-
+  {
+    id: '11',
+    slug: 'neuro-san-provider-enrollment-agent',
+    name: 'Neuro SAN Provider Enrollment Agent',
+    tagline: 'AI-Powered healthcare verification system built on Neuro® AI',
+    description: 'An intelligent multi-agent network that automates insurance provider enrollment checks on secure payer portals (like CGS Medicare and Novitas Solutions) with live fallbacks.',
+    category: 'ai',
+    status: 'production',
+    color: '#0d9488',
+    icon: '🏥',
+    tech: ['Neuro SAN', 'Python', 'LangChain', 'Mistral AI', 'HOCON', 'httpx'],
+    features: [
+      '3-agent cooperative network (Manager -> Scraper -> Extractor)',
+      'High-fidelity portal simulation & live crawling fallback',
+      'Custom PortalBrowserTool CodedTool integration',
+      'Structured JSON data extraction of enrollment metrics',
+    ],
+    metrics: {
+      'Agents': '3',
+      'Accuracy': '100% Simulation',
+      'Average Latency': '<1.5s',
+    },
+    architecture: [
+      { id: 'user', label: 'User Query', description: 'Provider credentials & NPI', type: 'input', position: { x: 250, y: 50 }, connections: ['manager'] },
+      { id: 'manager', label: 'EnrollmentManager', description: 'Frontman coordinating execution', type: 'ai', position: { x: 250, y: 170 }, connections: ['scraper'] },
+      { id: 'scraper', label: 'PortalScraper', description: 'Agent managing web fetch / simulation', type: 'ai', position: { x: 250, y: 290 }, connections: ['tool'] },
+      { id: 'tool', label: 'PortalBrowserTool', description: 'Custom python CodedTool scraper', type: 'process', position: { x: 250, y: 410 }, connections: ['extractor'] },
+      { id: 'extractor', label: 'DataExtractor', description: 'JSON structure parser agent', type: 'ai', position: { x: 250, y: 530 }, connections: ['output'] },
+      { id: 'output', label: 'Markdown Report', description: 'Final structured status summary', type: 'output', position: { x: 250, y: 650 }, connections: [] },
+    ],
+    links: { github: 'https://github.com/karkis23/portfolio-showcase#neuro-san-provider-enrollment-agent' },
+  },
 ];
 
 export const articles: Article[] = [
